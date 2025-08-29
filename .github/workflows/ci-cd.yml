@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths-ignore:
-      - 'kubernetes/deployment.yaml'  # Ignore changes to this file to prevent loops
+      - 'kubernetes/*'  # Ignore changes to this file to prevent loops
   pull_request:
     branches: [ main ]
 
