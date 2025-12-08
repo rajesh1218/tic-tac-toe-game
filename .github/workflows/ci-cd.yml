@@ -1,12 +1,13 @@
 name: CI/CD Pipeline
-
+permissions:
+  contents: read
+  id-token: write   
+  actions: read
 on:
   push:
     branches: [ master ]
     paths-ignore:
       - 'kubernetes/deployment.yaml'  # Ignore changes to this file to prevent loops
-  pull_request:
-    branches: [ main ]
 
 jobs:
   test:
@@ -132,7 +133,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         run: |
           sudo snap install trivy
-          trivy image -f json -o trivy-report.json ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          sudo trivy image -f json -o trivy-report.json ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       
       # - name: Run Trivy vulnerability scanner
       #   uses: aquasecurity/trivy-action@0.28.0
