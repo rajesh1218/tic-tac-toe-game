@@ -131,7 +131,7 @@ jobs:
 
       - name: Run Trivy vulnerability scanner
         run: |
-          sudo apt install trivy -y
+          sudo snap install trivy
           trivy image -f json -o trivy-report.json ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       
       # - name: Run Trivy vulnerability scanner
